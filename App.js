@@ -105,13 +105,13 @@ const App = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Home') {
-          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+          iconName = `ios-home-outline${focused ? '' : '-outline'}`;
         } else if (routeName === 'Settings') {
-          iconName = `ios-checkmark-circle${focused ? '' : '-outline'}`;
+          iconName = `ios-cog${focused ? '' : '-outline'}`;
         } else if (routeName === 'Profile') {
-          iconName = `ios-checkmark-circle${focused ? '' : '-outline'}`;
+          iconName = `ios-person${focused ? '' : '-outline'}`;
         } else if (routeName === 'Search') {
-          iconName = `ios-checkmark-circle${focused ? '' : '-outline'}`;
+          iconName = `ios-search${focused ? '' : '-outline'}`;
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },
