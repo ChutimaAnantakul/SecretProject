@@ -14,6 +14,7 @@ import HomeScreen from './pages/HomeScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import SearchScreen from './pages/SearchScreen';
+import UploadScreen from './pages/UploadScreen';
 import PaymentScreen from './pages/PaymentScreen';
 
 const HomeStack = createStackNavigator(
@@ -29,44 +30,6 @@ const HomeStack = createStackNavigator(
       },
       headerTintColor: '#FFFFFF',
       title: 'Home',
-      //Header title
-    },
-  },
-);
-const SettingsStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    Settings: {screen: SettingsScreen},
-    Profile: {screen: ProfileScreen},
-  },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#943126',
-      },
-      headerTintColor: '#FFFFFF',
-      title: 'Settings',
-      //Header title
-    },
-  },
-);
-const ProfileStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    // Settings: {screen: SettingsScreen},
-    // Details: {screen: DetailsScreen},
-    Profile: {screen: ProfileScreen},
-    Payment: {screen: PaymentScreen},
-  },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#943126',
-      },
-      headerTintColor: '#FFFFFF',
-      title: 'Profile',
       //Header title
     },
   },
@@ -90,13 +53,70 @@ const SearchStack = createStackNavigator(
     },
   },
 );
+const UploadStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    Upload: {screen: UploadScreen},
+  },
+  {
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#943126',
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'Upload',
+      //Header title
+    },
+  },
+);
+
+const ProfileStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    // Settings: {screen: SettingsScreen},
+    // Details: {screen: DetailsScreen},
+    Profile: {screen: ProfileScreen},
+    Payment: {screen: PaymentScreen},
+  },
+  {
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#943126',
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'Profile',
+      //Header title
+    },
+  },
+);
+const SettingsStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    Settings: {screen: SettingsScreen},
+    Profile: {screen: ProfileScreen},
+  },
+  {
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#943126',
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'Settings',
+      //Header title
+    },
+  },
+);
 
 const App = createBottomTabNavigator(
   {
     Home: {screen: HomeStack},
-    Settings: {screen: SettingsStack},
-    Profile: {screen: ProfileStack},
     Search: {screen: SearchStack},
+    Upload: {screen: UploadStack},
+    Profile: {screen: ProfileStack},
+    Settings: {screen: SettingsStack},
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -105,13 +125,15 @@ const App = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Home') {
-          iconName = `ios-home-outline${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-cog${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Profile') {
-          iconName = `ios-person${focused ? '' : '-outline'}`;
+          iconName = `ios-home${focused ? '' : '-outline'}`;
         } else if (routeName === 'Search') {
           iconName = `ios-search${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Upload') {
+          iconName = `ios-add-circle${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Profile') {
+          iconName = `ios-person${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Settings') {
+          iconName = `ios-cog${focused ? '' : '-outline'}`;
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },

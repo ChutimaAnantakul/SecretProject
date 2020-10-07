@@ -1,21 +1,18 @@
-//This is an example code for Bottom Navigation//
-import React from 'react';
-//import react in our code.
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
-//import all the basic component we have used
+import * as React from 'react';
+import {Searchbar} from 'react-native-paper';
 
-export default class SearchScreen extends React.Component {
-  //Profile Screen to show from Open profile button
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>Search!</Text>
-      </View>
-    );
-  }
-}
+const MyComponent = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const onChangeSearch = (query) => setSearchQuery(query);
+
+  return (
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
+  );
+};
+
+export default MyComponent;

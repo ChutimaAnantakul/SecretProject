@@ -9,3 +9,6 @@ Bottom Tab Package
 3. npm install @react-navigation/bottom-tabs --save
 4. npm install react-native-vector-icons --save
 5. npm install @react-navigation/stack --save
+6. npm i react-native-paper
+7. npm install react-native-image-picker --save
+8. npm install react-native link react-native-image-picker
