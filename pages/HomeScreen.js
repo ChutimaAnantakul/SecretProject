@@ -110,6 +110,7 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         {/* <Button title="next" onPress={()=> Navigation.navigate('ProfileScreen')}></Button> */}
@@ -145,8 +146,15 @@ export default class HomeScreen extends React.Component {
                     <TouchableOpacity
                       style={styles.followButton}
                       onPress={() => this.clickEventListener(item)}>
-                      <Text style={styles.followButtonText}>Follow</Text>
+                      {/* <Text style={styles.followButtonText}>Follow</Text> */}
+                      <Button title='Follow'
+        onPress={() =>navigate('profile2')}
+        />
+        <Button title='View'
+        onPress={() =>navigate('profile2')}
+        />
                     </TouchableOpacity>
+                    
                   </View>
                 </View>
               </TouchableOpacity>

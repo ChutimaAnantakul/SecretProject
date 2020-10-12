@@ -16,11 +16,13 @@ import ProfileScreen from './pages/ProfileScreen';
 import SearchScreen from './pages/SearchScreen';
 import UploadScreen from './pages/UploadScreen';
 import PaymentScreen from './pages/PaymentScreen';
+import profile2 from './pages/profile2';
 
 const HomeStack = createStackNavigator(
   {
     //Defination of Navigaton from home screen
     Home: {screen: HomeScreen},
+    profile2: {screen: profile2},
   },
   {
     defaultNavigationOptions: {
