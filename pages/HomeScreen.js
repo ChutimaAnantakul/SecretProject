@@ -145,16 +145,9 @@ export default class HomeScreen extends React.Component {
                     <Text style={styles.position}>{item.position}</Text>
                     <TouchableOpacity
                       style={styles.followButton}
-                      onPress={() => this.clickEventListener(item)}>
-                      {/* <Text style={styles.followButtonText}>Follow</Text> */}
-                      <Button title='Follow'
-        onPress={() =>navigate('profile2')}
-        />
-        <Button title='View'
-        onPress={() =>navigate('profile2')}
-        />
+                      onPress={() => this.props.navigation.navigate('profile2')}>
+                      <Text style={styles.followButtonText}>View</Text>
                     </TouchableOpacity>
-                    
                   </View>
                 </View>
               </TouchableOpacity>
@@ -250,6 +243,8 @@ const styles = StyleSheet.create({
   followButtonText: {
     color: '#FFFFFF',
     fontSize: 20,
+    flexDirection:"row",
+    justifyContent:"space-between"
   },
   icon: {
     height: 20,

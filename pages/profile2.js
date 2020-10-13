@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Image,
+  ImageBackground,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
@@ -56,41 +57,29 @@ export default class ProfileScreen extends React.Component {
           <View style={styles.photosCard}>
             <Text style={styles.cardTittle}>Photos</Text>
             <View style={styles.photosContainer}>
-              <Image
+                <Image 
                 style={styles.photo}
-                source={{
-                  uri: 'https://bootdey.com/img/Content/avatar/avatar1.png',
-                }}
+                source={require('./assets/Secret.jpg')} 
               />
               <Image
                 style={styles.photo}
-                source={{
-                  uri: 'https://bootdey.com/img/Content/avatar/avatar2.png',
-                }}
+                source={require('./assets/Secret.jpg')} 
               />
               <Image
                 style={styles.photo}
-                source={{
-                  uri: 'https://bootdey.com/img/Content/avatar/avatar3.png',
-                }}
+                source={require('./assets/Secret.jpg')} 
               />
               <Image
                 style={styles.photo}
-                source={{
-                  uri: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-                }}
+                source={require('./assets/Secret.jpg')} 
               />
               <Image
                 style={styles.photo}
-                source={{
-                  uri: 'https://bootdey.com/img/Content/avatar/avatar5.png',
-                }}
+                source={require('./assets/Secret.jpg')} 
               />
               <Image
                 style={styles.photo}
-                source={{
-                  uri: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-                }}
+                source={require('./assets/Secret.jpg')} 
               />
             </View>
           </View>
@@ -158,4 +147,5 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginRight: 5,
   },
+  
 });
