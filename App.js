@@ -1,149 +1,64 @@
-//This is an example code for Bottom Navigation//
+/* This is an Login Registration example from https://aboutreact.com/ */
+/* https://aboutreact.com/react-native-login-and-signup/ */
+
+//Import React
 import React from 'react';
-import {Button, Text, View, TouchableOpacity, StyleSheet} from 'react-native';
-//import all the basic component we have used
-import Ionicons from 'react-native-vector-icons/Ionicons';
-//import Ionicons to show the icon for bottom options
 
-//import React Navigation
-import {createAppContainer} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {createStackNavigator} from 'react-navigation-stack';
 
-import HomeScreen from './pages/HomeScreen';
-import SettingsScreen from './pages/SettingsScreen';
-import ProfileScreen from './pages/ProfileScreen';
-import SearchScreen from './pages/SearchScreen';
-import UploadScreen from './pages/UploadScreen';
-import PaymentScreen from './pages/PaymentScreen';
-import profile2 from './pages/profile2';
+//Import Navigators from React Navigation
+import { createAppContainer, createSwitchNavigator, NavigationActions, StackActions } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const HomeStack = createStackNavigator(
-  {
-    //Defination of Navigaton from home screen
-    Home: {screen: HomeScreen},
-    profile2: {screen: profile2},
+//Import all the screens needed
+// import ProfileScreen from './Screen/ProfileScreen';
+import SplashScreen from './Screen/SplashScreen';
+import LoginScreen from './Screen/LoginScreen';
+import RegisterScreen from './Screen/RegisterScreen';
+import DrawerNavigationRoutes from './Screen/DrawerNavigationRoutes';
+
+const Auth = createStackNavigator({
+  //Stack Navigator for Login and Sign up Screen
+  LoginScreen: {
+    screen: LoginScreen,
+    navigationOptions: {
+      headerShown: false,
+    },
   },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
+  RegisterScreen: {
+    screen: RegisterScreen,
+    navigationOptions: {
+      title: 'Register',
       headerStyle: {
         backgroundColor: '#943126',
       },
-      headerTintColor: '#FFFFFF',
-      title: 'Home',
-      //Header title
+      headerTintColor: '#fff',
     },
   },
-);
-const SearchStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    // Settings: {screen: SettingsScreen},
-    // Details: {screen: DetailsScreen},
-    Search: {screen: SearchScreen},
-  },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#943126',
-      },
-      headerTintColor: '#FFFFFF',
-      title: 'Search',
-      //Header title
-    },
-  },
-);
-const UploadStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    Upload: {screen: UploadScreen},
-  },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#943126',
-      },
-      headerTintColor: '#FFFFFF',
-      title: 'Upload',
-      //Header title
-    },
-  },
-);
+});
 
-const ProfileStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    // Settings: {screen: SettingsScreen},
-    // Details: {screen: DetailsScreen},
-    Profile: {screen: ProfileScreen},
-    Payment: {screen: PaymentScreen},
-  },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#943126',
-      },
-      headerTintColor: '#FFFFFF',
-      title: 'Profile',
-      //Header title
+/* Switch Navigator for those screens which needs to be switched only once
+  and we don't want to switch back once we switch from them to the next one */
+const App = createSwitchNavigator({ 
+  SplashScreen: {
+    /* SplashScreen which will come once for 5 Seconds */
+    screen: SplashScreen,
+    navigationOptions: {
+      /* Hiding header for Splash Screen */
+      headerShown: false,
     },
   },
-);
-const SettingsStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    Settings: {screen: SettingsScreen},
-    Profile: {screen: ProfileScreen},
+  Auth: {
+    /* Auth Navigator which includer Login Signup will come once */
+    screen: Auth,
   },
-  {
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#943126',
-      },
-      headerTintColor: '#FFFFFF',
-      title: 'Settings',
-      //Header title
+  DrawerNavigationRoutes: {
+    /* Navigation Drawer as a landing page */
+    screen: DrawerNavigationRoutes,
+    navigationOptions: {
+      /* Hiding header for Navigation Drawer as we will use our custom header */
+      headerShown: false,
     },
   },
-);
+});
 
-const App = createBottomTabNavigator(
-  {
-    Home: {screen: HomeStack},
-    Search: {screen: SearchStack},
-    Upload: {screen: UploadStack},
-    Profile: {screen: ProfileStack},
-    Settings: {screen: SettingsStack},
-  },
-  {
-    defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: ({focused, horizontal, tintColor}) => {
-        const {routeName} = navigation.state;
-        let IconComponent = Ionicons;
-        let iconName;
-        if (routeName === 'Home') {
-          iconName = `ios-home${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Search') {
-          iconName = `ios-search${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Upload') {
-          iconName = `ios-add-circle${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Profile') {
-          iconName = `ios-person${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-cog${focused ? '' : '-outline'}`;
-        }
-        return <IconComponent name={iconName} size={25} color={tintColor} />;
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: '#943126',
-      inactiveTintColor: 'gray',
-    },
-  },
-);
 export default createAppContainer(App);
