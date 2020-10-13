@@ -1,28 +1,4 @@
-// /* This is an Login Registration example from https://aboutreact.com/ */
-// /* https://aboutreact.com/react-native-login-and-signup/ */
-
-// //Import React
-// import React from 'react';
-
-// //Import all required component
-// import { View, Text } from 'react-native';
-
-// const HomeScreen = () => {
-//   global.currentScreenIndex = 'HomeScreen';
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', marginTop: 100 }}>
-//       <Text style={{ fontSize: 23, marginTop: 10 }}>Home Screen</Text>
-//       <Text style={{ fontSize: 18, marginTop: 10 }}>
-//         Simple Login Registraction Example
-//       </Text>
-//       <Text style={{ fontSize: 18, marginTop: 10 }}>https://aboutreact</Text>
-//     </View>
-//   );
-// };
-// export default HomeScreen;
-
 import React, {Component} from 'react';
-// import ProfileScreen from './Screen/ProfileScreen';
 
 import {
   StyleSheet,
@@ -40,80 +16,25 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          id: 1,
-          name: 'Mark Doe',
-          position: 'DJ',
-          image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-        },
-        {
-          id: 1,
-          name: 'John Doe',
-          position: 'VJ',
-          image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
-        },
-        {
-          id: 2,
-          name: 'Clark Man',
-          position: 'Member',
-          image: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-        },
-        {
-          id: 3,
-          name: 'Jaden Boor',
-          position: 'VJ',
-          image: 'https://bootdey.com/img/Content/avatar/avatar5.png',
-        },
-        {
-          id: 4,
-          name: 'Srick Tree',
-          position: 'Member',
-          image: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-        },
-        {
-          id: 5,
-          name: 'Mia Rawee',
-          position: 'DJ',
-          image: 'https://bootdey.com/img/Content/avatar/avatar3.png',
-        },
-        {
-          id: 6,
-          name: 'Mike wane',
-          position: 'DJ',
-          image: 'https://bootdey.com/img/Content/avatar/avatar2.png',
-        },
-        {
-          id: 8,
-          name: 'Bruce Lee',
-          position: 'Member',
-          image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
-        },
-        {
-          id: 9,
-          name: 'John Wick',
-          position: 'Member',
-          image: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-        },
-        {
-          id: 9,
-          name: 'Uki Mika',
-          position: 'Member',
-          image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-        },
-      ],
+      isLoading: true,
     };
   }
 
-  clickEventListener(item) {
-    Alert.alert(item.name);
+  componentDidMount() {
+    return fetch('http://172.16.186.100/SecretProject/api/user.php')
+      .then((response) => response.json())
+      .then((responseJason) => {
+        this.setState({data: responseJason});
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        {/* <Button title="next" onPress={()=> Navigation.navigate('ProfileScreen')}></Button> */}
         <FlatList
           style={styles.list}
           contentContainerStyle={styles.listContainer}
@@ -137,12 +58,12 @@ export default class HomeScreen extends React.Component {
                     }}
                   />
                 </View>
-                <Image style={styles.userImage} source={{uri: item.image}} />
+                <Image style={styles.userImage} source={{uri: item.UPhoto}} />
                 <View style={styles.cardFooter}>
                   <View
                     style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.name}>{item.name}</Text>
-                    <Text style={styles.position}>{item.position}</Text>
+                    <Text style={styles.name}>{item.Uname}</Text>
+                    <Text style={styles.position}>{item.Ustatus}</Text>
                     <TouchableOpacity
                       style={styles.followButton}
                       onPress={() => this.props.navigation.navigate('profile2')}>
